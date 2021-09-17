@@ -64,6 +64,9 @@ class GraphBuilder
                 $label = $column->getName();
                 if (config('erd-generator.use_column_types')) {
                     $label .= ' ('.$column->getType()->getName().')';
+                    if ($column->getComment()) {
+                        $label .= ' ' . $column->getComment();
+                    }
                 }
                 $table .= '<tr width="100%"><td port="' . $column->getName() . '" align="left" width="100%"  bgcolor="'.config('erd-generator.table.row_background_color').'"><font color="'.config('erd-generator.table.row_font_color').'" >' . $label . '</font></td></tr>' . PHP_EOL;
             }
